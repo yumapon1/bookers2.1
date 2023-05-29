@@ -1,0 +1,38 @@
+<div class = "container">
+  <div class ="row">
+    <div class = "col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
+
+       <% if @user.errors.any?%>
+       <%= @user.errors.count %> errors prohibited this obj from being saved:
+       <ul>
+         <% @user.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
+       </ul>
+      <% end %>
+
+      <h2>User info</h2>
+      <%= form_for(@user, url: user_path(current_user.id)) do |f| %>
+
+      <div class = "form-group">
+         <label>Name</label><br>
+         <%= f.text_field :name %><br>
+      </div>
+
+      <div class = "form-group">
+        <label>Image</label><br>
+        <%= f.file_field :profile_image, accept: "image/*" %><br>
+      </div>
+
+      <div class = "form-group">
+        <label>Introduction</label><br>
+        <%= f.text_area :introduction %><br>
+      </div>
+
+      <div class = "form-group">
+        <%= f.submit 'Update User' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="container px-5 px-sm-0">
+ <div class = "row">
+  <div class= "col-md-3">
+    <h2>User info</h2>
+     <% if @user.profile_image.attached? %>
+      <%= image_tag @user.profile_image, size: "100x100" %>
+     <% else %>
+      <%= image_tag 'no_image', size: "100x100" %>
+    <% end %>
+
+    <table class = "table">
+        <tbody>
+            <tr></tr>
+            <tr>
+                <th>name</th>
+                <th> <%= @book.user.name %></th>
+            </tr>
+            <tr>
+                <th>introduction</th>
+                <th><%= @book.user.introduction %></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class = "row">
+        <%= link_to  edit_user_path(@user.id) ,class: "btn btn-outline-secondary btn-block"  do%>
+        <span> <i class="fas fa-user-cog"></i></span>
+        <% end %>
+    </div>
+
+    <%= form_for(@book_new,  url: books_path) do |f| %>
+    <h2 class = "mt-3">New book</h2>
+
+    <div class = "form-group">
+        <label>Title</label><br>
+        <%= f.text_field :title,class: "col-xs-12" %>
+    </div>
+
+    <div class = "form-group">
+        <label>Opinipn</label><br>
+        <%= f.text_field :body,class: "col-xs-12" %>
+    </div>
+
+    <div class = "form-group">
+        <%= f.submit 'Create Book', class: "col-xs-12 btn btn-success" %>
+        <% end %>
+    </div>
+  </div>
+
+  <div class= "col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class='table' >
+          <tbody>
+           <tr>
+            <td>
+            <%= link_to user_path(@book.user_id) do %>
+            <nav>
+             <% if @user.profile_image.attached? %>
+              <%= image_tag @user.profile_image, size: "100x100" %>
+             <% else %>
+              <%= image_tag 'no_image', size: "100x100" %>
+             <% end %><br>
+              <%= @book.user.name %>
+            </nav>
+            <% end %>
+            </td>
+            <td><%= link_to @book.title %></td>
+            <td><%= @book.body %></td>
+
+    <% if @book.user_id == current_user.id %>
+     <td><%= link_to"Edit", edit_book_path(@book.id),class:"btn-sm btn-success" %></td>
+     <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm": "削除しますか？", class:"btn-sm btn-danger"%></td>
+    <% end %>
+    </tr>
+   </tbody>
+  </table>
+ </div>
