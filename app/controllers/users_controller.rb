@@ -23,10 +23,7 @@ end
   def show
     @book = Book.new
     @user = User.find(params[:id])
-    @books = @user.books
-    #@books= Book.all
-    #@books = Book.where(user_id: @user.id)
-
+    @books = Book.where(user_id: @user.id)
   end
 
   def update
