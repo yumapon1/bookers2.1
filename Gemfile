@@ -46,7 +46,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+   gem 'capybara', '>= 2.15'
     gem 'rspec-rails'
     gem "factory_bot_rails"
     gem 'faker'
@@ -58,3 +58,4 @@ gem 'devise'
 gem 'net-smtp'
 gem 'font-awesome-rails'
 gem 'bootstrap', '~> 4.1.1'
+

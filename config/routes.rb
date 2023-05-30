@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   #get 'books/show'
    resources :users, only: [:index, :show, :edit, :update]
    resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
+    resources :book_comments, only:[:create,:destroy]
     #いいねはURL にidを含めなくて良いためresorce
      resource :favorites, only: [:create, :destroy]
    end
